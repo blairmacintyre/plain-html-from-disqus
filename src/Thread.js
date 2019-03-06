@@ -63,6 +63,19 @@ class Thread {
 			})
 		};
 	}
+
+	toString() {
+		var output =  "<div class='commentURL'>" + this.path + "</div>\n" +
+		  "<span id='oldComments'>\n" +
+			"<h2>" + (this.posts.length > 1 ? this.posts.length.toString() + " Archived Comments</h2>" : "1 Archived Comment</h2>") + 
+			"\n<ul class='comments archived'>\n"; 
+		this.posts.filter(post => {
+			return !post.getParentPostId();
+		}).map(post => {
+			output += post.toString();
+		})
+		return output + "</ul>\n</span>\n\n";
+	}
 }
 
 /*

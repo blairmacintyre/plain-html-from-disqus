@@ -1,3 +1,30 @@
+# Convert Disqus to Static Comments
+
+I had moved Wordpress comments to disqus when I moved from WordPress to Jekyll years ago.  Somewhere during the time I was using Jekyll, Disqus become a bit more evil, so I've been wanting to move off it.
+
+I decided to ditch Disqus when I moved my blog to Ghost this year.  I forked the eleventy-import-disqus archive, and hacked it up to output comments as simple HTML lists I can manually insert into my hosted blog.  Sure, it requires some manual work, but I'm ok with that (once).  
+
+Output content looks like this:
+```
+<div class='commentURL'>/2008/09/26/hoping-to-avoid-the-hype-bubble/</div>
+<span id='oldComments'>
+<h2>2 Archived Comments</h2>
+<ul class='comments archived'>
+<li>
+  <span class='source'> on Saturday, September 27, 2008, UTC, twDarkflame said:</span>
+  <span class='text'><p>The "mind-boggling" amount of data you want is already there.<br>Almost every product sold in .....</p></span>
+</li>
+<li>
+  <span class='source'> on Saturday, September 27, 2008, UTC, blair said:</span>
+  <span class='text'><p>I totally agree that some of the data we need is there;  yes, we can identify products, IF a device can read the barcode.  And, sure, it's possible to know what's ....</p></span>
+</li>
+</ul>
+</span>
+```
+
+I don't plan on using the commentURL div, aside for manual search.   I've integrated WebMentions into the blog as the new way I want folks to comment, so I'm going to include the "oldComments" span in the body of the post, and then as part of finding and injecting webmentions in the post, I will move this span down with the mentions.
+
+
 # eleventy-import-disqus
 
 This is an intermediate step to migrate off of Disqus altogether but keep static copies of existing comment content.

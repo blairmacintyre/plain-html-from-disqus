@@ -43,6 +43,23 @@ class Post {
 			})
 		};
 	}
+
+	toString() {
+		var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC', timeZoneName : 'short' };
+		var date = new Date(this.post.createdAt[0]);
+		var output = "<li>\n" + 
+		  "  <span class='source'>" + " on " + date.toLocaleString('en-US', options) + ", " +  this.post.author[0].name[0] + " said:</span>\n" +
+		  "  <span class='text'>" + this.post.message[0] + "</span>\n";
+		
+		if (this.replies.length > 0) {
+			output += "<ul class='comments archived'>\n"
+			this.replies.map(function(reply) {
+				output += reply.toString()
+			});
+			output += "</ul>\n"
+		}
+		return output + "</li>\n";
+	}
 }
 
 /*
